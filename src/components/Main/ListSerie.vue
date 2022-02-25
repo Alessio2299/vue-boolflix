@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <h2>film</h2>
+    <h2>serie Tv</h2>
     <div class="containerCard">
       <div class="button">
         <i class="next fas fa-chevron-circle-right"></i>
         <i class="prev fas fa-chevron-circle-left"></i>
       </div>
-      <CardComponent v-for="(film,index) in arrayFilm" :key="index" :film="film" />
+      <CardComponent />
     </div>
   </div>
 </template>
@@ -14,12 +14,9 @@
 <script>
   import CardComponent from "./CardComponent.vue"
   export default {
-    name: "ListFilm",
+    name: "ListSerie",
     components:{
       CardComponent
-    },
-    props:{
-      arrayFilm: Array
     }
   }
 </script>
