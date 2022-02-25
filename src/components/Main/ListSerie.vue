@@ -6,7 +6,8 @@
         <i class="next fas fa-chevron-circle-right"></i>
         <i class="prev fas fa-chevron-circle-left"></i>
       </div>
-      <CardComponent />
+      <CardComponent v-for="(serie,index) in arraySerieTv" :key="index" :object="serie"/>
+
     </div>
   </div>
 </template>
@@ -17,6 +18,9 @@
     name: "ListSerie",
     components:{
       CardComponent
+    },
+    props:{
+      arraySerieTv: Array
     }
   }
 </script>

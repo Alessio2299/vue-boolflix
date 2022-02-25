@@ -1,7 +1,7 @@
 <template>
   <main>
     <ListFilm :arrayFilm="listPopularFilms"/>
-    <ListSerie />
+    <ListSerie :arraySerieTv="listPopularTv"/>
   </main>
 </template>
 
@@ -12,7 +12,8 @@
   export default {
     name: "MainPage",
     props:{
-      listPopularFilms: Array
+      listPopularFilms: Array,
+      listPopularTv: Array
     },
     components: {
     ListFilm,

@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img :src="`https://image.tmdb.org/t/p/w342${posterpath()}`" :alt="film.original_title">
+    <img :src="`https://image.tmdb.org/t/p/w342${object.poster_path}`" :alt="object.original_title">
   </div>
 </template>
 
@@ -8,7 +8,7 @@
   export default {
     name: "CardComponent",
     props:{
-      film : Object
+      object : Object
     },
     methods:{
       // Prova per capire se l'errore era dovuto ad un tempo di caricamento della chiamata axios

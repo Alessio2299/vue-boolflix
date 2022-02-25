@@ -6,7 +6,7 @@
         <i class="next fas fa-chevron-circle-right"></i>
         <i class="prev fas fa-chevron-circle-left"></i>
       </div>
-      <CardComponent v-for="(film,index) in arrayFilm" :key="index" :film="film" />
+      <CardComponent @click="selectedFilm" v-for="(film,index) in arrayFilm" :key="index" :object="film" />
     </div>
   </div>
 </template>
@@ -20,6 +20,11 @@
     },
     props:{
       arrayFilm: Array
+    },
+    methods:{
+      selectedFilm(){
+        console.log(this.arrayFilm);
+      }
     }
   }
 </script>
