@@ -11,12 +11,15 @@
       film : Object
     },
     methods:{
+      // Prova per capire se l'errore era dovuto ad un tempo di caricamento della chiamata axios
+      /*
       posterpath(){
         let time = '';
         setTimeout(() => 
           time = this.film.poster_path
         , 1000);
       }
+      */
     }
   }
 </script>
