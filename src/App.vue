@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderPage />
+    <HeaderPage @textSearch="search"/>
     <MainPage :listPopularFilms="popularFilms" :listPopularTv="popularTv"/>
   </div>
 </template>
@@ -14,7 +14,8 @@ export default {
     return{
       popularFilms: [],
       popularTv: [],
-      loading: true
+      loading: true,
+      searchText: ""
     }
   },
   components: {
@@ -26,19 +27,18 @@ export default {
     axios.get('https://api.themoviedb.org/3/movie/popular?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT')
     .then(response => {
       console.log(response)
-      for(let i = 6; i < 12; i++){
-      this.popularFilms.push(response.data.results[i]) 
-      }
+      this.popularFilms = response.data.results
     })
     axios.get('https://api.themoviedb.org/3/tv/popular?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT')
     .then(response => {
       console.log(response)
-      for(let i = 0; i < 6; i++){
-      this.popularTv.push(response.data.results[i]) 
-      }
+      this.popularTv = response.data.results
     })
   },
-  methods:{      
+  methods:{    
+    search(value){
+      this.searchText = value
+    }  
   }
 }
 </script>

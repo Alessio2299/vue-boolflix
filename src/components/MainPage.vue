@@ -11,6 +11,10 @@
 
   export default {
     name: "MainPage",
+    data(){
+      return{
+      }
+    },
     props:{
       listPopularFilms: Array,
       listPopularTv: Array
@@ -18,6 +22,8 @@
     components: {
     ListFilm,
     ListSerie
+    },
+    methods:{
     }
   }
 </script>

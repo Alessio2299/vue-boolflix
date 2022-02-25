@@ -8,12 +8,13 @@
     text-transform: uppercase;
     height: 30px;
     padding: 5px;
-    margin-bottom: 10px;
   }
   .containerCard{
-    display: flex;
     height: calc(100% - 30px);
     position: relative;
+    display: inline-block;
+    overflow: hidden;
+    padding-top: 20px;
     .next,
     .prev{
       position: absolute;
@@ -23,6 +24,7 @@
       font-size: 35px;
       color: rgba(255, 255, 255, 0.6);
       cursor: pointer;
+      z-index: 3;
       &:hover{
         transform: translateY(-50%) scale(1.2);
       }
