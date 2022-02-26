@@ -54,6 +54,7 @@
         object-position: center;
         backface-visibility: hidden;
         width: 100%;
+        overflow: hidden;
         img{
           height: 100%;
         }

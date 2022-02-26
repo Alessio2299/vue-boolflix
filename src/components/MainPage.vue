@@ -1,7 +1,7 @@
 <template>
   <main>
-    <ListFilm :arrayFilm="listPopularFilms"/>
-    <ListSerie :arraySerieTv="listPopularTv"/>
+    <ListFilm :arrayFilm="listFilm"/>
+    <ListSerie :arraySerieTv="listTv"/>
   </main>
 </template>
 
@@ -16,8 +16,8 @@
       }
     },
     props:{
-      listPopularFilms: Array,
-      listPopularTv: Array
+      listFilm: Array,
+      listTv: Array,
     },
     components: {
     ListFilm,
