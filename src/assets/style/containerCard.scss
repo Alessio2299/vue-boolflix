@@ -12,9 +12,9 @@
   .containerCard{
     height: calc(100% - 30px);
     position: relative;
-    display: inline-block;
+    display: flex;
     overflow: hidden;
-    padding-top: 20px;
+    padding: 20px 0;
     .next,
     .prev{
       position: absolute;
