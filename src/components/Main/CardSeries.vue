@@ -7,8 +7,8 @@
       <div class="card-back">
         <p><span>Titolo:</span> {{object.name}}</p>
         <p v-if="object.name != object.original_name"><span>Titolo Originale:</span> {{object.original_name}}</p>
-        <p><span>Lingua:</span> {{object.original_language}}</p>
-        <p><span>Voto:</span> {{object.vote_average}}</p>
+        <p><span>Lingua: </span></p>
+        <span class="rating">Voto: <StarRating :star-size="10" :show-rating="false" :rating="object.vote_average / 2" :read-only="true"/></span>
         <p v-if="object.overview != ''"><span>Trama:</span> {{object.overview}}</p>
         <p v-else><span>Trama:</span> {{nothingOverview}}</p>
       </div>
@@ -17,12 +17,16 @@
 </template>
 
 <script>
+  import StarRating from 'vue-star-rating'
   export default {
     name: "CardSeries",
     data(){
       return{
         nothingOverview : "Nessuna trama disponibile",
       }
+    },
+    components:{
+      StarRating,
     },
     props:{
       object : Object
@@ -31,96 +35,12 @@
 </script>
 
 <style scoped lang="scss">
-  .card{
-    height: 100%;
-    border: 2px solid rgb(26, 26, 26);
-    display: inline-block;
-    position: relative;
-    perspective: 1000px;
-    width: calc(100% / 6);
-    .card-inner{
-      transition: transform 2s;
-      transform-style: preserve-3d;
-    }
-    &:hover .card-inner {
-    transform: rotateY(180deg);
-    }
-    .card-inner{
-      height: 100%;
-      .card-front,
-      .card-back{
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        backface-visibility: hidden;
-        width: 100%;
-        overflow: hidden;
-        img{
-          height: 100%;
-        }
-      }
-      .card-back{
-      backface-visibility: hidden;
-      position: absolute;
-      background-color: #000;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 100%;
-      overflow: auto;
-      color: gray;
-      font-size: 14px;
-      line-height: 20px;
-      padding: 10px;
-      transform: rotateY(180deg);
-        span{
-          color: #fff;
-          font-weight: bold;
-        }
-      }
-    }
+  @import "../../assets/style/card.scss";
+  .rating{
+    display: flex;
+    margin-right: 5px;
+    width: 90px;
+    justify-content: space-between;
   }
+  
 </style>
-
-  // .card{
-  //   width: calc(100% / 6);
-  //   height: 100%;
-  //   border: 2px solid rgb(26, 26, 26);
-  //   display: inline-block;
-  //   position: relative;
-  //   perspective: 1000px;
-  //   &:hover .card-inner {
-  //   transform: rotateY(180deg);
-  //   } 
-  //   .card-inner{
-  //     transition: transform 2s;
-  //     transform-style: preserve-3d;
-  //   }
-  //   .card-front{
-  //     img{
-  //     width: 100%;
-  //     height: 100%;
-  //     object-fit: cover;
-  //     backface-visibility: hidden;
-  //     }
-  //   }
-  //   .card-back{
-  //     backface-visibility: hidden;
-  //     position: absolute;
-  //     background-color: #000;
-  //     top: 0;
-  //     left: 0;
-  //     right: 0;
-  //     height: 100%;
-  //     overflow: auto;
-  //     color: gray;
-  //     font-size: 14px;
-  //     line-height: 20px;
-  //     padding: 10px;
-  //     transform: rotateY(180deg);
-  //     span{
-  //       color: #fff;
-  //       font-weight: bold;
-  //     }
-  //   }
-  // }
