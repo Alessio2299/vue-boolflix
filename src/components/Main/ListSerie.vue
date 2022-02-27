@@ -6,18 +6,18 @@
         <i class="next fas fa-chevron-circle-right"></i>
         <i class="prev fas fa-chevron-circle-left"></i>
       </div>
-      <CardComponent v-for="(serie,index) in arraySerieTv" :key="index" :object="serie"/>
+      <CardSeries v-for="(serie,index) in arraySerieTv" :key="index" :object="serie"/>
 
     </div>
   </div>
 </template>
 
 <script>
-  import CardComponent from "./CardComponent.vue"
+  import CardSeries from "./CardSeries.vue"
   export default {
     name: "ListSerie",
     components:{
-      CardComponent
+      CardSeries
     },
     props:{
       arraySerieTv: Array

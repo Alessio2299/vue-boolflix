@@ -5,8 +5,8 @@
         <img :src="`https://image.tmdb.org/t/p/w342${object.poster_path}`" :alt="object.title">
       </div>
       <div class="card-back">
-        <p><span>Titolo:</span> {{object.title}}</p>
-        <p v-if="object.title != object.original_title"><span>Titolo Originale:</span> {{object.original_title}}</p>
+        <p><span>Titolo:</span> {{object.name}}</p>
+        <p v-if="object.name != object.original_name"><span>Titolo Originale:</span> {{object.original_name}}</p>
         <p><span>Lingua:</span> {{object.original_language}}</p>
         <p><span>Voto:</span> {{object.vote_average}}</p>
         <p v-if="object.overview != ''"><span>Trama:</span> {{object.overview}}</p>
@@ -18,7 +18,7 @@
 
 <script>
   export default {
-    name: "CardComponent",
+    name: "CardSeries",
     data(){
       return{
         nothingOverview : "Nessuna trama disponibile",

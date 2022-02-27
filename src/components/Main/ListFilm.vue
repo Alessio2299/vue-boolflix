@@ -6,13 +6,13 @@
         <i class="next fas fa-chevron-circle-right"></i>
         <i class="prev fas fa-chevron-circle-left"></i>
       </div>
-      <CardComponent v-for="(film,index) in arrayFilm" :key="index" :object="film" />
+      <CardFilm v-for="(film,index) in arrayFilm" :key="index" :object="film" />
     </div>
   </div>
 </template>
 
 <script>
-  import CardComponent from "./CardComponent.vue"
+  import CardFilm from "./CardFilm.vue"
   export default {
     name: "ListFilm",
     data(){
@@ -20,7 +20,7 @@
       }
     },
     components:{
-      CardComponent
+      CardFilm
     },
     props:{
       arrayFilm: Array
