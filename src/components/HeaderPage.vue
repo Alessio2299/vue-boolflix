@@ -3,8 +3,8 @@
     <div class="container-header">
       <h1>boolflix</h1>
       <div class="search">
-        <input @keyup.enter="$emit('textSearch', search)" type="text" v-model="search" placeholder="Cerca il film o serieTv">
-        <button @click="$emit('textSearch', search)">Cerca</button>
+        <input @keyup.enter="change" type="text" v-model="search" placeholder="Cerca film o serieTv">
+        <button @click="change">Cerca</button>
       </div>
     </div>
   </header>
@@ -15,9 +15,16 @@ export default {
   name: 'HeaderPage',
   data(){
     return{
-      search: ""
+      search: "",
+      valueChange: 1
     }
   },
+  methods:{
+    change(){
+      this.valueChange += 1
+      this.$emit('textSearch', this.search, this.valueChange)
+    }
+  }
 }
 </script>
 

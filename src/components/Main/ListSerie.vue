@@ -7,7 +7,7 @@
         <i class="prev fas fa-chevron-circle-left"></i>
       </div>
       <span class="nothingResult" v-if="arraySerieTv.length == 0">Non esistono risultati per questa ricerca</span>
-      <SingleCard v-else v-for="(serie,index) in arraySerieTv" :key="index" :object="serie"/>
+      <SingleCard v-else v-for="(serie,index) in arraySerieTv" :key="index" :object="serie" :type="type" :value="value"/>
     </div>
   </div>
 </template>
@@ -16,11 +16,17 @@
   import SingleCard from "./SingleCard.vue"
   export default {
     name: "ListSerie",
+    data(){
+      return{
+        type: "tv"
+      }
+    },
     components:{
       SingleCard
     },
     props:{
-      arraySerieTv: Array
+      arraySerieTv: Array,
+      value: Number
     }
   }
 </script>

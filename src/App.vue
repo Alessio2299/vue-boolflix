@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderPage @textSearch="search"/>
-    <MainPage @valueSliderFilm="newValueSlider" :listFilm="film" :listTv="seriesTv" />
+    <MainPage @valueSliderFilm="newValueSlider" :listFilm="film" :listTv="seriesTv" :value="value"/>
   </div>
 </template>
 
@@ -21,6 +21,7 @@ export default {
       // Valori Slider, che servono per il ciclo for
       nextFilm: 6,
       prevFilm: 0,
+      value: 1,
     }
   },
   components: {
@@ -49,10 +50,11 @@ export default {
     this.getSeriesFilm(this.urlSeries, "seriesTv")
   },
   methods:{    
-    search(value){
-      this.searchText = value
-      this.urlFilm = `https://api.themoviedb.org/3/search/movie?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT&query=${value}`;
-      this.urlSeries = `https://api.themoviedb.org/3/search/tv?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT&query=${value}`;
+    search(valueText, valueChange){
+      this.searchText = valueText;
+      this.value = valueChange;
+      this.urlFilm = `https://api.themoviedb.org/3/search/movie?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT&query=${valueText}`;
+      this.urlSeries = `https://api.themoviedb.org/3/search/tv?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT&query=${valueText}`;
       if(this.searchText == ""){
         this.urlFilm = `https://api.themoviedb.org/3/movie/popular?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`;
         this.urlSeries = `https://api.themoviedb.org/3/tv/popular?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`;

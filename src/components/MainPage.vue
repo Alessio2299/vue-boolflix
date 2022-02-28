@@ -1,7 +1,7 @@
 <template>
   <main>
-    <ListFilm @next="valueSlider" :arrayFilm="listFilm"/>
-    <ListSerie :arraySerieTv="listTv"/>
+    <ListFilm @next="valueSlider" :arrayFilm="listFilm" :value="value"/>
+    <ListSerie :arraySerieTv="listTv" :value="value"/>
   </main>
 </template>
 
@@ -20,6 +20,7 @@
     props:{
       listFilm: Array,
       listTv: Array,
+      value: Number
     },
     components: {
     ListFilm,

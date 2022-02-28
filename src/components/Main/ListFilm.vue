@@ -7,7 +7,7 @@
         <i class="prev fas fa-chevron-circle-left"></i>
       </div>
       <span class="nothingResult" v-if="arrayFilm.length == 0">Non esistono risultati per questa ricerca</span>
-       <SingleCard v-else v-for="(film,index) in arrayFilm" :key="index" :object="film" />
+       <SingleCard v-else v-for="(film,index) in arrayFilm" :key="index" :object="film" :value="value" :type="type"/>
     </div>
   </div>
 </template>
@@ -19,14 +19,16 @@
     data(){
       return{
         prevSlider: 0,
-        nextSlider: 6
+        nextSlider: 6,
+        type: "movie"
       }
     },
     components:{
       SingleCard
     },
     props:{
-      arrayFilm: Array
+      arrayFilm: Array,
+      value: Number
     },
     methods:{
       next(){

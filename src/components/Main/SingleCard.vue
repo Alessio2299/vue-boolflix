@@ -1,5 +1,5 @@
 <template>
-  <div @click="nothingOverview" class="card">
+  <div class="card">
     <div class="card-inner">
       <div class="card-front">
         <img v-if="object.poster_path != null" :src="`https://image.tmdb.org/t/p/w342${object.poster_path}`" :alt="object.title">
@@ -27,12 +27,16 @@
           <StarRating :star-size="10" :show-rating="false" :rating="object.vote_average / 2" :read-only="true"/>
         </span>
         <p v-if="object.overview != ''">
-          <span>Trama:</span> 
+          <span>Trama: </span> 
           {{object.overview}}
         </p>
         <p v-else>
-          <span>Trama:</span> 
+          <span>Trama: </span> 
           {{nothingOverview}}
+        </p>
+        <p>
+          <span>Cast: </span>
+          <span v-for="(actor,index) in cast" :key="index">{{actor.name}},</span>
         </p>
       </div>
     </div>
@@ -47,14 +51,35 @@
     data(){
       return{
         nothingOverview : "Nessuna trama disponibile",
-        flags: ["en", "it", "es"]
+        flags: ["en", "it", "es"],
+        cast: [],
       }
+    },
+    watch:{
+      value(){
+        this.getCast(`https://api.themoviedb.org/3/${this.type}/${this.object.id}/credits?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`)
+        console.log(this.object.id)
+      }
+    },
+    mounted(){
+      this.getCast(`https://api.themoviedb.org/3/${this.type}/${this.object.id}/credits?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`)
     },
     components:{
       StarRating,
     },
     props:{
-      object : Object
+      object : Object,
+      value: Number,
+      type: String
+    },
+    methods:{
+      getCast(API){
+        const axios = require('axios')
+        axios.get(API)
+        .then(response => {
+          this.cast = (response.data.cast)
+        })
+      },
     }
   }
 </script>
