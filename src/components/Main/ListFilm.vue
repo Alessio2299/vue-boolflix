@@ -3,30 +3,37 @@
     <h2>film</h2>
     <div class="containerCard">
       <div class="button">
-        <i class="next fas fa-chevron-circle-right"></i>
+        <i @click="next()" class="next fas fa-chevron-circle-right"></i>
         <i class="prev fas fa-chevron-circle-left"></i>
       </div>
       <span class="nothingResult" v-if="arrayFilm.length == 0">Non esistono risultati per questa ricerca</span>
-       <CardFilm v-else v-for="(film,index) in arrayFilm" :key="index" :object="film" />
+       <SingleCard v-else v-for="(film,index) in arrayFilm" :key="index" :object="film" />
     </div>
   </div>
 </template>
 
 <script>
-  import CardFilm from "./CardFilm.vue"
+  import SingleCard from "./SingleCard.vue"
   export default {
     name: "ListFilm",
     data(){
       return{
+        prevSlider: 0,
+        nextSlider: 6
       }
     },
     components:{
-      CardFilm
+      SingleCard
     },
     props:{
       arrayFilm: Array
     },
     methods:{
+      next(){
+        this.nextSlider += 6 
+        this.prevSlider += 6
+        this.$emit("next", this.nextSlider, this.prevSlider)
+      }
     }
   }
 </script>

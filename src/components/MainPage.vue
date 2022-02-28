@@ -1,6 +1,6 @@
 <template>
   <main>
-    <ListFilm :arrayFilm="listFilm"/>
+    <ListFilm @next="valueSlider" :arrayFilm="listFilm"/>
     <ListSerie :arraySerieTv="listTv"/>
   </main>
 </template>
@@ -13,6 +13,8 @@
     name: "MainPage",
     data(){
       return{
+        nextSliderFilm: "",
+        prevSliderFilm: ""
       }
     },
     props:{
@@ -24,6 +26,11 @@
     ListSerie
     },
     methods:{
+      valueSlider(nextValue,prevValue){
+        this.nextSliderFilm = nextValue;
+        this.prevSliderFilm = prevValue;
+        this.$emit("valueSliderFilm", this.nextSliderFilm, this.prevSliderFilm)
+      }
     }
   }
 </script>
