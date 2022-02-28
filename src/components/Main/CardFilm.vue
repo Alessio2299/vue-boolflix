@@ -2,7 +2,8 @@
   <div @click="nothingOverview" class="card">
     <div class="card-inner">
       <div class="card-front">
-        <img :src="`https://image.tmdb.org/t/p/w342${object.poster_path}`" :alt="object.title">
+        <img v-if="object.poster_path != null" :src="`https://image.tmdb.org/t/p/w342${object.poster_path}`" :alt="object.title">
+        <img v-else src="https://www.edizionicantagalli.com/wp-content/uploads/2020/01/Copertina-non-disponibile.jpg" :alt="object.title">
       </div>
       <div class="card-back">
         <p><span>Titolo:</span> {{object.title}}</p>

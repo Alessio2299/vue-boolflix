@@ -6,8 +6,8 @@
         <i class="next fas fa-chevron-circle-right"></i>
         <i class="prev fas fa-chevron-circle-left"></i>
       </div>
-      <CardSeries v-for="(serie,index) in arraySerieTv" :key="index" :object="serie"/>
-
+      <span class="nothingResult" v-if="arraySerieTv.length == 0">Non esistono risultati per questa ricerca</span>
+      <CardSeries v-else v-for="(serie,index) in arraySerieTv" :key="index" :object="serie"/>
     </div>
   </div>
 </template>
@@ -27,4 +27,12 @@
 
 <style scoped lang="scss">
   @import "../../assets/style/containerCard.scss";
+  .nothingResult{
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+  }
 </style>
