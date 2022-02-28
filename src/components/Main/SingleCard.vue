@@ -36,11 +36,13 @@
         </p>
         <p>
           <span>Cast: </span>
-          <span class="actor" v-for="(actor,index) in getInfoCast" :key="index">{{actor.name}},</span>
+          <span class="genre" v-if="getInfoCast.length == 0">Nessun cast disponibile</span>
+          <span v-else class="actor" v-for="(actor,index) in getInfoCast.slice(0, 5)" :key="index">{{actor.name}},</span>
         </p>
         <p>
           <span>Genere: </span>
-          <span class="genre" v-for="(genre,index) in getInfoGenre" :key="index">{{genre.name}},</span>
+          <span class="genre" v-if="getInfoGenre.length == 0">Nessun genere disponibile</span>
+          <span v-else class="genre" v-for="(genre,index) in getInfoGenre" :key="index">{{genre.name}},</span>
         </p>
       </div>
     </div>
