@@ -36,7 +36,11 @@
         </p>
         <p>
           <span>Cast: </span>
-          <span v-for="(actor,index) in cast" :key="index">{{actor.name}},</span>
+          <span class="actor" v-for="(actor,index) in getInfoCast" :key="index">{{actor.name}},</span>
+        </p>
+        <p>
+          <span>Genere: </span>
+          <span class="genre" v-for="(genre,index) in getInfoGenre" :key="index">{{genre.name}},</span>
         </p>
       </div>
     </div>
@@ -53,16 +57,22 @@
         nothingOverview : "Nessuna trama disponibile",
         flags: ["en", "it", "es"],
         cast: [],
+        genres:[]
       }
     },
-    watch:{
-      value(){
-        this.getCast(`https://api.themoviedb.org/3/${this.type}/${this.object.id}/credits?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`)
-        console.log(this.object.id)
+    computed:{
+      getInfoCast(){
+        this.getInfo(`https://api.themoviedb.org/3/${this.type}/${this.object.id}/credits?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`, "cast", "cast")
+        return this.cast
+      },
+      getInfoGenre(){
+        this.getInfo(`https://api.themoviedb.org/3/${this.type}/${this.object.id}?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`, "genres", "genres")
+        return this.genres
       }
     },
     mounted(){
-      this.getCast(`https://api.themoviedb.org/3/${this.type}/${this.object.id}/credits?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`)
+      this.getInfo(`https://api.themoviedb.org/3/${this.type}/${this.object.id}/credits?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`, "cast", "cast")
+      this.getInfo(`https://api.themoviedb.org/3/${this.type}/${this.object.id}?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`, "genres", "genres")
     },
     components:{
       StarRating,
@@ -73,13 +83,13 @@
       type: String
     },
     methods:{
-      getCast(API){
+      getInfo(API,array, interested){
         const axios = require('axios')
         axios.get(API)
         .then(response => {
-          this.cast = (response.data.cast)
+          this[array] = (response.data[interested])
         })
-      },
+      }
     }
   }
 </script>
