@@ -16,7 +16,9 @@ export default {
   data(){
     return{
       search: "",
-      valueChange: 1
+      valueChange: 0,
+      nextSlider: 6,
+      prevSlider: 0
     }
   },
   methods:{

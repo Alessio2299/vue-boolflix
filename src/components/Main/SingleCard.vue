@@ -82,7 +82,7 @@
     props:{
       object : Object,
       value: Number,
-      type: String
+      type: String,
     },
     methods:{
       getInfo(API,array, interested){

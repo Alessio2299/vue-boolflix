@@ -3,11 +3,16 @@
     <h2>film</h2>
     <div class="containerCard">
       <div class="button">
-        <i @click="next()" class="next fas fa-chevron-circle-right"></i>
-        <i class="prev fas fa-chevron-circle-left"></i>
+        <i @click="next()" v-if="nextSlider < arrayFilm.length" class="next fas fa-chevron-circle-right"></i>
+        <i @click="prev()" v-if="prevSlider > 0" class="prev fas fa-chevron-circle-left"></i>
       </div>
       <span class="nothingResult" v-if="arrayFilm.length == 0">Non esistono risultati per questa ricerca</span>
-       <SingleCard v-else v-for="(film,index) in arrayFilm" :key="index" :object="film" :value="value" :type="type"/>
+       <SingleCard v-else v-for="(film,index) in arrayFilm.slice(prevSlider, nextSlider)" 
+       :key="index" 
+       :object="film" 
+       :value="value" 
+       :type="type"
+       />
     </div>
   </div>
 </template>
@@ -28,13 +33,16 @@
     },
     props:{
       arrayFilm: Array,
-      value: Number
+      value: Number,
     },
     methods:{
       next(){
-        this.nextSlider += 6 
-        this.prevSlider += 6
-        this.$emit("next", this.nextSlider, this.prevSlider)
+        this.nextSlider += 1 
+        this.prevSlider += 1
+      },
+      prev(){
+        this.nextSlider -= 1 
+        this.prevSlider -= 1
       }
     }
   }
