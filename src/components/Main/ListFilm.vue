@@ -7,12 +7,13 @@
         <i @click="prev()" v-if="prevSlider > 0" class="prev fas fa-chevron-circle-left"></i>
       </div>
       <span class="nothingResult" v-if="arrayFilm.length == 0">Non esistono risultati per questa ricerca</span>
-       <SingleCard v-else v-for="(film,index) in arrayFilm.slice(prevSlider, nextSlider)" 
-       :key="index" 
-       :object="film" 
-       :value="value" 
-       :type="type"
-       />
+      <SingleCard 
+        v-else 
+        v-for="(film,index) in arrayFilm.slice(prevSlider, nextSlider)" 
+        :key="index" 
+        :object="film" 
+        :type="type"
+      />
     </div>
   </div>
 </template>
@@ -25,7 +26,7 @@
       return{
         prevSlider: 0,
         nextSlider: 6,
-        type: "movie"
+        type: "movie",
       }
     },
     components:{
@@ -33,7 +34,6 @@
     },
     props:{
       arrayFilm: Array,
-      value: Number,
     },
     methods:{
       next(){

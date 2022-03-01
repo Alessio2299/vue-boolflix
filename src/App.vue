@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderPage @textSearch="search"/>
-    <MainPage :listFilm="film" :listTv="seriesTv" :value="value" />
+    <MainPage :listFilm="film" :listTv="seriesTv"/>
   </div>
 </template>
 
@@ -17,7 +17,6 @@ export default {
       searchText: "",
       urlFilm: `https://api.themoviedb.org/3/movie/popular?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`,
       urlSeries: `https://api.themoviedb.org/3/tv/popular?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT`,
-      value: 1,
     }
   },
   components: {
@@ -37,9 +36,8 @@ export default {
     this.getSeriesFilm(this.urlSeries, "seriesTv")
   },
   methods:{    
-    search(valueText, valueChange,){
+    search(valueText){
       this.searchText = valueText;
-      this.value = valueChange;
       this.urlFilm = `https://api.themoviedb.org/3/search/movie?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT&query=${valueText}`;
       this.urlSeries = `https://api.themoviedb.org/3/search/tv?api_key=0c96dc1900571df6b92cf3cd3536e18b&language=it-IT&query=${valueText}`;
       if(this.searchText == ""){

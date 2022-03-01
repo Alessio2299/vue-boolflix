@@ -46,6 +46,18 @@
         color: #fff;
         font-weight: bold;
       }
+      .rating{
+        display: flex;
+        margin-right: 5px;
+        width: 90px;
+        justify-content: space-between;
+      }
+      .flag{
+        width: 20px;
+        line-height: 40px;
+        vertical-align: middle;
+        margin-left: 5px;
+      }
       .genre,
       .actor{
         display: inline-block;

@@ -16,15 +16,13 @@ export default {
   data(){
     return{
       search: "",
-      valueChange: 0,
       nextSlider: 6,
       prevSlider: 0
     }
   },
   methods:{
     change(){
-      this.valueChange += 1
-      this.$emit('textSearch', this.search, this.valueChange)
+      this.$emit('textSearch', this.search)
     }
   }
 }

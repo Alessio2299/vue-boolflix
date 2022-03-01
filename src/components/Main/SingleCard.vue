@@ -2,48 +2,44 @@
   <div class="card">
     <div class="card-inner">
       <div class="card-front">
-        <img v-if="object.poster_path != null" :src="`https://image.tmdb.org/t/p/w342${object.poster_path}`" :alt="object.title">
-        <img v-else src="https://www.edizionicantagalli.com/wp-content/uploads/2020/01/Copertina-non-disponibile.jpg" :alt="object.title">
+        <img v-if="object.poster_path" :src="`https://image.tmdb.org/t/p/w342${object.poster_path}`" :alt="title()">
+        <img v-else :src="require ('../../assets/img/Copertina-non-disponibile.jpeg')" :alt="title()">
       </div>
       <div class="card-back">
-        <p v-if="object.title != undefined">
+        <div>
           <span>Titolo:</span> 
-          {{object.title}}
-        </p>
-        <p v-else>
-          <span>Titolo:</span> 
-          {{object.name}}
-        </p>
-        <p v-if="object.name != object.original_name">
+          {{title()}}
+        </div>
+        <div v-if="object.original_title != object.title || object.original_name != object.name">
           <span>Titolo Originale:</span> 
-          {{object.original_name}}
-        </p>
-        <p>
+          {{originalTitle()}}
+        </div>
+        <div>
           <span>Lingua: </span>
           <img class="flag" v-if="flags.includes(object.original_language)" :src="require (`../../assets/img/flag-${object.original_language}.svg`)" alt="en">
           <span v-else>{{object.original_language}}</span>
-        </p>
+        </div>
         <span class="rating">Voto: 
           <StarRating :star-size="10" :show-rating="false" :rating="object.vote_average / 2" :read-only="true"/>
         </span>
-        <p v-if="object.overview != ''">
+        <div v-if="object.overview != ''">
           <span>Trama: </span> 
           {{object.overview}}
-        </p>
-        <p v-else>
+        </div>
+        <div v-else>
           <span>Trama: </span> 
-          {{nothingOverview}}
-        </p>
-        <p>
+          Nessuna trama disponibile.
+        </div>
+        <div>
           <span>Cast: </span>
-          <span class="genre" v-if="getInfoCast.length == 0">Nessun cast disponibile</span>
+          <span class="actor" v-if="getInfoCast.length == 0">Nessun cast disponibile</span>
           <span v-else class="actor" v-for="(actor,index) in getInfoCast.slice(0, 5)" :key="index">{{actor.name}},</span>
-        </p>
-        <p>
+        </div>
+        <div>
           <span>Genere: </span>
           <span class="genre" v-if="getInfoGenre.length == 0">Nessun genere disponibile</span>
           <span v-else class="genre" v-for="(genre,index) in getInfoGenre" :key="index">{{genre.name}},</span>
-        </p>
+        </div>
       </div>
     </div>
   </div>
@@ -56,10 +52,9 @@
     name: "SingleCard",
     data(){
       return{
-        nothingOverview : "Nessuna trama disponibile",
         flags: ["en", "it", "es"],
         cast: [],
-        genres:[]
+        genres:[],
       }
     },
     computed:{
@@ -81,7 +76,6 @@
     },
     props:{
       object : Object,
-      value: Number,
       type: String,
     },
     methods:{
@@ -91,6 +85,20 @@
         .then(response => {
           this[array] = (response.data[interested])
         })
+      },
+      title(){
+        if(this.object.title){
+          return this.object.title
+        }else{
+          return this.object.name
+        }
+      },
+      originalTitle(){
+        if(this.object.original_title){
+          return this.object.original_title
+        }else{
+          return this.object.original_name
+        }
       }
     }
   }
@@ -98,16 +106,4 @@
 
 <style scoped lang="scss">
   @import "../../assets/style/card.scss";
-  .rating{
-    display: flex;
-    margin-right: 5px;
-    width: 90px;
-    justify-content: space-between;
-  }
-  .flag{
-    width: 20px;
-    line-height: 40px;
-    vertical-align: middle;
-    margin-left: 5px;
-  }
 </style>

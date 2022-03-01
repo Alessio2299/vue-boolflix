@@ -7,7 +7,13 @@
         <i @click="prev()" v-if="prevSlider > 0" class="prev fas fa-chevron-circle-left"></i>
       </div>
       <span class="nothingResult" v-if="arraySerieTv.length == 0">Non esistono risultati per questa ricerca</span>
-      <SingleCard v-else v-for="(serie,index) in arraySerieTv.slice(prevSlider, nextSlider)" :key="index" :object="serie" :type="type" :value="value"/>
+      <SingleCard 
+        v-else 
+        v-for="(serie,index) in arraySerieTv.slice(prevSlider, nextSlider)" 
+        :key="index" 
+        :object="serie" 
+        :type="type"
+      />
     </div>
   </div>
 </template>
@@ -28,7 +34,6 @@
     },
     props:{
       arraySerieTv: Array,
-      value: Number
     },
     methods:{
       next(){
